@@ -2,6 +2,8 @@ import React, {useEffect, useState} from 'react';
 import {ScrollView, StyleSheet, Text, View} from 'react-native';
 import Card from '../../molecules/Card';
 import Axios from 'axios';
+import Card2 from '../../molecules/Card2';
+import Card3 from '../../molecules/Card3';
 
 const HomeScreen = () => {
   const [users, setUsers] = useState([]);
@@ -12,8 +14,9 @@ const HomeScreen = () => {
     //   .then(res => res.json())
     //   .then(json => setUsers(json.data));
     // Axios
-    Axios.get('https://reqres.in/api/users').then(res =>
-      setUsers(res.data.data),
+    Axios.get('https://reqres.in/api/users').then(
+      res => setUsers(res.data.data),
+      console.log(users),
     );
   }, []);
 
@@ -25,7 +28,8 @@ const HomeScreen = () => {
         {users.map(item => (
           <Card
             key={item.id}
-            fullName={`${item.first_name} ${item.last_name}`}
+            firstName={item.first_name}
+            lastName={item.last_name}
             email={item.email}
             imageUrl={item.avatar}
           />

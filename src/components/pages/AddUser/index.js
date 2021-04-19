@@ -3,30 +3,32 @@ import {StyleSheet, Text, View} from 'react-native';
 import Button from '../../atoms/Button';
 import Gap from '../../atoms/Gap';
 import TextInput from '../../atoms/TextInput';
+import Axios from 'axios';
 
 const App = () => {
   const [welcome, setWelcome] = useState('Welcome');
-  const [userName, setUserName] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
 
   useEffect(() => {
     console.log('Component Did Mount');
   }, []);
 
   useEffect(() => {
-    console.log('component did update')
+    console.log('component did update');
   }, [welcome]);
 
   const handleSubmit = () => {
-    setWelcome('Selamat Datang ')
+    setWelcome('Selamat Datang ');
     const data = {
-      userName: userName,
-      password: password,
+      email: email,
+      userName: firstName,
+      lastName: lastName,
     };
+    Axios.post('http://localhost:3004/users', data);
     console.log(data);
-
   };
-
 
   console.log('Render component');
   return (
@@ -34,22 +36,27 @@ const App = () => {
       <Text style={styles.title}>{welcome}</Text>
       <Gap height={40} />
       <TextInput
-        value={userName}
-        label="Username"
-        placeholder="Masukan username anda"
-        onChangeText={e => setUserName(e)}
-        
+        value={email}
+        label="Email"
+        placeholder="Masukan Email"
+        onChangeText={e => setEmail(e)}
       />
       <Gap height={24} />
       <TextInput
-        value={password}
-        label="Password"
-        placeholder="Masukan password anda"
-        onChangeText={e => setPassword(e)}
-        secureTextEntry={true}
+        value={firstName}
+        label="First Name"
+        placeholder="Masukan First name"
+        onChangeText={e => setFirstName(e)}
+      />
+      <Gap height={24} />
+      <TextInput
+        value={lastName}
+        label="Last Name"
+        placeholder="Masukan Last name"
+        onChangeText={e => setLastName(e)}
       />
       <Gap height={48} />
-      <Button label="Sign in" onSubmit={handleSubmit} />
+      <Button label="Tambah" onSubmit={handleSubmit} />
     </View>
   );
 };

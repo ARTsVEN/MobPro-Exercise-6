@@ -4,9 +4,10 @@ import Login from './components/pages/Login';
 // import Title from './components/Title';
 import Registration from './components/pages/Registration';
 import UserList from './components/pages/UserList';
+import AddUser from './components/pages/AddUser'
 
 const App = () => {
-  return <HomeScreen />;
+  return <AddUser />;
 };
 
 export default App;

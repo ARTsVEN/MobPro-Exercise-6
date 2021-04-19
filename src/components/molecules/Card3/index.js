@@ -1,14 +1,12 @@
 import React from 'react';
-import {StyleSheet, Text, View, Image} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 
-const Card = ({fullName, email, imageUrl, firstName, lastName}) => {
+const Card = ({fullName, email, firstName, lastName}) => {
   return (
     <View style={styles.card}>
-      {/* <Text style={styles.name}>{fullName}</Text> */}
+      <Text style={styles.email}>{email}</Text>
       <Text style={styles.name}>{firstName}</Text>
       <Text style={styles.name}>{lastName}</Text>
-      <Text style={styles.email}>{email}</Text>
-      <Image style={styles.image} source={{uri: `${imageUrl}`}} />
     </View>
   );
 };
